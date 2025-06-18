@@ -27,6 +27,6 @@ jobs:
     - name: Update Gist
       uses: exuanbo/actions-deploy-gist@v1
       with:
-        gist_id: https://github.com/tuannm/googleip
+        gist_id: 83542555c90528d8bba7b728b0ab04df
         token: ${{ AACSTJUMX4ZUUAWMNVHKLQDIKJC3A }}
         file_path: google-ip.txt
