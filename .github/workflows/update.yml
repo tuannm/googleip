@@ -1,0 +1,32 @@
+name: Update Google IP to Gist
+
+on:
+  schedule:
+    - cron: '0 3 * * *'  # chạy mỗi ngày lúc 3h UTC (10h sáng VN)
+  workflow_dispatch:  # cho phép chạy thủ công từ giao diện GitHub Actions
+
+jobs:
+  update-gist:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.x'
+
+    - name: Install requests
+      run: pip install requests
+
+    - name: Run Python script to generate google-ip.txt
+      run: python update_google_ip.py
+
+    - name: Update Gist
+      uses: exuanbo/actions-deploy-gist@v1
+      with:
+        gist_id: https://github.com/tuannm/googleip
+        token: ${{ AACSTJUMX4ZUUAWMNVHKLQDIKJC3A }}
+        file_path: google-ip.txt
