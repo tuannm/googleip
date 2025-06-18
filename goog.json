@@ -1,0 +1,16 @@
+import requests
+import json
+
+url = "https://www.gstatic.com/ipranges/goog.json"
+r = requests.get(url)
+data = r.json()
+
+ip_list = []
+
+for prefix in data['prefixes']:
+    if 'ipv4Prefix' in prefix:
+        ip_list.append(prefix['ipv4Prefix'])
+
+# Ghi IP vào file
+with open("google-ip.txt", "w") as f:
+    f.write("\n".join(ip_list))
